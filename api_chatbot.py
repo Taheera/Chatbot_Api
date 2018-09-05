@@ -329,19 +329,19 @@ def FOL_Creation(question):
 	    scores1.append(get_cosine(i, text_to_vector(str(tdf.iloc[0,3]))))
     max_value1 = max(scores1)
 	
-    print max_value1
+    print(max_value1)
     max_value2 = max(max_value,max_value1)
-    print max_value2
+    print(max_value2)
 	
     if(max_value2 == max_value):
 	    max_index = scores.index(max_value)
     else:
 	    max_index = scores1.index(max_value1)
-    print max_index
+    print(max_index)
 	
     results.append(oa[max_index])
     millis1 = int(round(time.time() * 1000))
-    print millis1 - millis
+    print(millis1 - millis)
     return jsonify(data = results)
 
 @app.route('/api/v1/resources/books/all', methods=['GET'])
