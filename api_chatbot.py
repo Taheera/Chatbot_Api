@@ -310,7 +310,7 @@ def FOL_Creation(question):
                 tdf.iloc[i,1] = ""
                 tdf.iloc[i,2] = s
         s=""
-	etdf["Question"] = question
+	tdf["Question"] = question
 	
 	#print tdf
 	scores =[]
