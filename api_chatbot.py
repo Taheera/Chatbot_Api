@@ -311,37 +311,35 @@ def FOL_Creation(question):
                 tdf.iloc[i,2] = s
         s=""
     tdf["Question"] = question
+    scores =[]
+    scores1 =[]
+    results =[]
+    some = []
+    some1 = []
+    for book in oa:
+	    some.append(text_to_vector(book['FOL']))
+    for book in oa:
+	    some1.append(text_to_vector(book['Question']))
+    for i in some:
+	    scores.append(get_cosine(i, text_to_vector(str(tdf.iloc[0,1]))))
+    max_value = max(scores)
+    print max_value
 	
-	#print tdf
-	scores =[]
-	scores1 =[]
-	results =[]
-	some = []
-	some1 = []
-	for book in oa:
-		some.append(text_to_vector(book['FOL']))
-	for book in oa:
-		some1.append(text_to_vector(book['Question']))
-	for i in some:
-		scores.append(get_cosine(i, text_to_vector(str(tdf.iloc[0,1]))))
-	max_value = max(scores)
-	print max_value
+    for i in some1:
+	    scores1.append(get_cosine(i, text_to_vector(str(tdf.iloc[0,3]))))
+    max_value1 = max(scores1)
 	
-	for i in some1:
-		scores1.append(get_cosine(i, text_to_vector(str(tdf.iloc[0,3]))))
-	max_value1 = max(scores1)
+    print max_value1
+    max_value2 = max(max_value,max_value1)
+    print max_value2
 	
-	print max_value1
-	max_value2 = max(max_value,max_value1)
-	print max_value2
+    if(max_value2 == max_value):
+	    max_index = scores.index(max_value)
+    else:
+	    max_index = scores1.index(max_value1)
+    print max_index
 	
-	if(max_value2 == max_value):
-		max_index = scores.index(max_value)
-	else:
-		max_index = scores1.index(max_value1)
-	print max_index
-	
-	results.append(oa[max_index])
+    results.append(oa[max_index])
     millis1 = int(round(time.time() * 1000))
     print millis1 - millis
     return jsonify(data = results)
