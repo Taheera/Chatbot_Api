@@ -323,7 +323,7 @@ def FOL_Creation(question):
     for i in some:
 	    scores.append(get_cosine(i, text_to_vector(str(tdf.iloc[0,1]))))
     max_value = max(scores)
-    print max_value
+    print(max_value)
 	
     for i in some1:
 	    scores1.append(get_cosine(i, text_to_vector(str(tdf.iloc[0,3]))))
